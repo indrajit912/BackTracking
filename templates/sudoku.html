@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="sudoku-board">
+            <h2>Sudoku Board</h2>
+            {% for row in puzzle_board %}
+                <div class="sudoku-row">
+                    {% for cell in row %}
+                        <div class="sudoku-cell {% if cell == 0 %}empty-cell{% endif %}">
+                            {% if cell != 0 %}{{ cell }}{% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="sudoku-board" id="solved-board" style="display: none;">
+            <h2>Solved Board</h2>
+            {% for row in solved_board %}
+                <div class="sudoku-row">
+                    {% for cell in row %}
+                        <div class="sudoku-cell {% if cell == 0 %}empty-cell{% endif %}">
+                            {% if cell != 0 %}{{ cell }}{% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Button to toggle display of solved board -->
+    <div style="text-align: center;">
+        <button onclick="toggleSolvedBoard()">Solve</button>
+        <a href="{{ url_for('sudoku') }}">Try another!</a>
+    </div>
+    
+
+    <script>
+        function toggleSolvedBoard() {
+            var solvedBoardDiv = document.getElementById("solved-board");
+            if (solvedBoardDiv.style.display === "none") {
+                solvedBoardDiv.style.display = "block";
+            } else {
+                solvedBoardDiv.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
