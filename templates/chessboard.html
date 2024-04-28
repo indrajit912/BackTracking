@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chessboard</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .chessboard-container {
+            position: relative;
+        }
+
+        .chessboard {
+            width: 650px;
+            height: 650px;
+            display: grid;
+            grid-template-columns: 40px repeat(8, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+            position: relative;
+            grid-column-gap: 0px; /* Adjust gap between columns */
+        }
+
+        .cell {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px; /* Adjust font size here */
+            font-weight: bold;
+        }
+
+        .white {
+            background-color: #f0d9b5;
+        }
+
+        .black {
+            background-color: #b58863;
+        }
+
+        .rank-label,
+        .file-label {
+            position: absolute;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .rank-label {
+            right: 100%;
+            top: 0;
+            transform: translateY(-50%);
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+        }
+
+        .file-label {
+            left: 0;
+            bottom: -30px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .rank-number {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            grid-row: span 1;
+            grid-column: span 1;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .file-label span {
+            display: inline-block;
+            margin-left: 67px; /* Adjust spacing between file labels */
+        }
+    </style>
+</head>
+<body>
+    <div class="chessboard-container">
+        <div class="chessboard">
+            {% for row in range(8) %}
+                <div class="rank-number">{{ 8 - row }}</div>
+                {% for col in range(8) %}
+                    {% set cell_color = 'white' if (row + col) % 2 == 0 else 'black' %}
+                    <div class="cell {{ cell_color }}">
+                        {% if chess_board[row][col] %} 
+                            {{ chess_board[row][col] }}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            <div class="file-label">
+                <span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
