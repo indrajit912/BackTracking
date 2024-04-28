@@ -18,7 +18,6 @@ def index():
 def sudoku():
     return render_template('input_sudoku.html')
 
-
 @app.route('/solve', methods=['POST'])
 def solve():
     given_board = [[0 for _ in range(9)] for _ in range(9)]
@@ -52,8 +51,6 @@ def solve():
         puzzle_board=puzzle_board,
         solved_board=solved_board
     )
-
-
 
 
 if __name__ == '__main__':
