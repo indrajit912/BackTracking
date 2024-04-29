@@ -110,7 +110,7 @@ def main():
     N = 12
     bo = np.zeros((N, N))
     
-    solve_n_queens(bo,0)
+    solve_n_queens(bo, 0)
     print(bo)
 
 
