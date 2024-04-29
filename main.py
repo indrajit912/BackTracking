@@ -8,9 +8,20 @@ from chess import *
 from pprint import pprint
 
 def main():
-    chess_board = ChessBoard.from_list(eight_queens_board)
+    chess_board = ChessBoard(
+        data={
+            'a5': ChessPiece('black_queen'),
+            'b3': ChessPiece('black_queen'),
+            'c1': ChessPiece('black_queen'),
+            'd7': ChessPiece('black_queen'),
+            'e2': ChessPiece('black_queen'),
+            'f8': ChessPiece('black_queen'),
+            'g6': ChessPiece('black_queen'),
+            'h4': ChessPiece('black_queen')
+        }
+    )
 
-    print(chess_board)
+    pprint(chess_board.get_integer_board())
     print()
 
 
